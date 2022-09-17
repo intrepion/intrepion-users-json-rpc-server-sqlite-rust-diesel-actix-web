@@ -5,6 +5,9 @@ mod tests {
 
     #[actix_web::test]
     async fn test_not_logged_in() {
-        let _app = test::init_service(App::new().route("/", web::get().to(index))).await;
+        let app = test::init_service(App::new().route("/", web::get().to(index))).await;
+        let req = test::TestRequest::post().uri("/").to_request();
+        let resp = test::call_service(&app, req).await;
+        assert!(resp.status().is_client_error());
     }
 }
