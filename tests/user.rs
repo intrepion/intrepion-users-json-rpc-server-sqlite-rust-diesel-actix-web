@@ -4,10 +4,10 @@ mod tests {
     use intrepion_users_json_rpc_server_sqlite_rust_diesel_actix_web::routes::index;
 
     #[actix_web::test]
-    async fn test_not_logged_in() {
+    async fn test_sign_up() {
         let app = test::init_service(App::new().route("/", web::get().to(index))).await;
-        let req = test::TestRequest::post().uri("/").to_request();
-        let resp = test::call_service(&app, req).await;
-        assert!(resp.status().is_client_error());
+        let request = test::TestRequest::post().uri("/").to_request();
+        let response = test::call_service(&app, request).await;
+        assert!(response.status().is_client_error());
     }
 }
