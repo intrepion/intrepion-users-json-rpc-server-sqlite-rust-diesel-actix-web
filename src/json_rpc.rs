@@ -9,4 +9,8 @@ pub struct JsonRpcRequest {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct JsonRpcResponse {}
+pub struct JsonRpcResponse {
+    pub id: String,
+    pub jsonrpc: String,
+    pub result: i32,
+}
